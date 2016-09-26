@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-heytz-iflytek" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Iflytek</name>
+    <js-module name="Iflytek" src="www/Iflytek.js">
+        <clobbers target="cordova.plugins.Iflytek"/>
+    </js-module>
+    <preference name="IFLYTEK_APPKEY"/>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="Iflytek">
+                <param name="ios-package" value="Iflytek"/>
+            </feature>
+        </config-file>
+        <source-file src="src/ios/Iflytek.m"/>
+    </platform>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="Iflytek">
+                <param name="android-package" value="com.heytz.iflytek.Iflytek"/>
+            </feature>
+            <preference name="iflytekappkey" value="$IFLYTEK_APPKEY"/>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+
+        </config-file>
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <meta-data android:name="IFLYTEK_APPKEY" android:value="$IFLYTEK_APPKEY"/>
+            <meta-data android:name="IFLYTEK_CHANNEL" android:value="developer-default"/>
+        </config-file>
+        <config-file parent="/manifest" target="AndroidManifest.xml">
+            <!--获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
+            <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+            <!--连接网络权限，用于执行云端语音能力 -->
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <!--读取网络信息状态 -->
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <!--获取当前wifi状态 -->
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <!--允许程序改变网络连接状态 -->
+            <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+            <!--读取手机信息权限 -->
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+            <!--手机定位信息，用来为语义等功能提供定位，提供更精准的服务-->
+            <!--定位信息是敏感信息，可通过Setting.setLocationEnable(false)关闭定位请求 -->
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <!--读取联系人权限，上传联系人需要用到此权限 -->
+            <uses-permission android:name="android.permission.READ_CONTACTS"/>
+            <!--外存储写权限，构建语法需要用到此权限 -->
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <!--配置权限，用来记录应用配置信息 -->
+            <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+            <!--外存储读权限，构建语法需要用到此权限 -->
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+            <!--如需使用人脸识别，还要添加:-->
+            <!--摄相头权限，拍照需要用到 -->
+            <uses-permission android:name="android.permission.CAMERA"/>
+        </config-file>
+        <!--代码-->
+        <source-file src="src/android/Iflytek.java" target-dir="src/com/heytz/iflytek"/>
+        <source-file src="src/android/HeytzRecognizerListener.java" target-dir="src/com/heytz/iflytek"/>
+        <!--lib 引用-->
+        <source-file src="libs/android/arm64-v8a/libmsc.so" target-dir="libs/arm64-v8a"/>
+        <source-file src="libs/android/armeabi/libmsc.so" target-dir="libs/armeabi"/>
+        <source-file src="libs/android/armeabi-v7a/libmsc.so" target-dir="libs/armeabi-v7a"/>
+        <source-file src="libs/android/mips/libmsc.so" target-dir="libs/mips"/>
+        <source-file src="libs/android/mips64/libmsc.so" target-dir="libs/mips64"/>
+        <source-file src="libs/android/x86/libmsc.so" target-dir="libs/x86"/>
+        <source-file src="libs/android/x86_64/libmsc.so" target-dir="libs/x86_64"/>
+        <source-file src="libs/android/Msc.jar" target-dir="libs"/>
+        <source-file src="libs/android/Sunflower.jar" target-dir="libs"/>
+
+        <!--资源文件-->
+        <source-file src="libs/android/iflytek/recognize.xml" target-dir="assets/iflytek"/>
+        <source-file src="libs/android/iflytek/voice_empty.png" target-dir="assets/iflytek"/>
+        <source-file src="libs/android/iflytek/voice_bg.9.png" target-dir="assets/iflytek"/>
+        <source-file src="libs/android/iflytek/voice_full.png" target-dir="assets/iflytek"/>
+        <source-file src="libs/android/iflytek/waiting.png" target-dir="assets/iflytek"/>
+        <source-file src="libs/android/iflytek/warning.png" target-dir="assets/iflytek"/>
+
+
+    </platform>
+</plugin>
