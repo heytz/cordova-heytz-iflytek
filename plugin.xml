@@ -57,6 +57,7 @@
             <uses-permission android:name="android.permission.CAMERA"/>
         </config-file>
         <!--代码-->
+        <source-file src="src/android/JsonParser.java" target-dir="src/com/heytz/iflytek/util"/>
         <source-file src="src/android/Iflytek.java" target-dir="src/com/heytz/iflytek"/>
         <source-file src="src/android/HeytzRecognizerListener.java" target-dir="src/com/heytz/iflytek"/>
         <!--lib 引用-->
