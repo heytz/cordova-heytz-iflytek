@@ -15,8 +15,7 @@
 
         <framework src="SystemConfiguration.framework"/>
         <framework src="Foundation.framework"/>
-        <framework src="CoreTelephoney.framework"/>
-        <framework src="CoreTelephoney.framework"/>
+        <framework src="CoreTelephony.framework"/>
         <framework src="AVFoundation.framework"/>
         <framework src="AudioToolbox.framework"/>
         <framework src="UIKit.framework"/>
