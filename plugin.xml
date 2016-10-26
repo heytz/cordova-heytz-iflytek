@@ -12,7 +12,30 @@
                 <param name="ios-package" value="Iflytek"/>
             </feature>
         </config-file>
+
+        <framework src="SystemConfiguration.framework"/>
+        <framework src="Foundation.framework"/>
+        <framework src="CoreTelephoney.framework"/>
+        <framework src="CoreTelephoney.framework"/>
+        <framework src="AVFoundation.framework"/>
+        <framework src="AudioToolbox.framework"/>
+        <framework src="UIKit.framework"/>
+        <framework src="CoreLocation.framework"/>
+        <framework src="AddressBook.framework"/>
+        <framework src="QuartzCore.framework"/>
+        <framework src="CoreGraphics.framework"/>
+        <framework src="libz.tbd"/>
         <source-file src="src/ios/Iflytek.m"/>
+        <source-file src="src/ios/Definition.h"/>
+        <source-file src="src/ios/IATConfig.h"/>
+        <source-file src="src/ios/IATConfig.m"/>
+        <source-file src="src/ios/IATConfigViewController.h"/>
+        <source-file src="src/ios/IATConfigViewController.m"/>
+        <source-file src="src/ios/IATViewController.h"/>
+        <source-file src="src/ios/IATViewController.m"/>
+        <source-file src="src/ios/ISRDataHelper.h"/>
+        <source-file src="src/ios/ISRDataHelper.m"/>
+        <source-file framework="true" src="src/ios/iflyMSC.framework"/>
     </platform>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
