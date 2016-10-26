@@ -74,7 +74,7 @@
     NSLog(@"_result=%@",resultFromJson);
     if (resultFromJson != nil && isLast==true) {
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:resultFromJson];
-        resultFromJson＝@“”;
+        resultFromJson=@"";
         [self.commandDelegate sendPluginResult:pluginResult callbackId:commandHolder.callbackId];
     }
 

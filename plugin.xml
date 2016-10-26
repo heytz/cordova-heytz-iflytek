@@ -24,6 +24,7 @@
         <framework src="QuartzCore.framework"/>
         <framework src="CoreGraphics.framework"/>
         <framework src="libz.tbd"/>
+        <framework custom="true" src="src/ios/iflyMSC.framework"/>
         <source-file src="src/ios/Iflytek.m"/>
         <source-file src="src/ios/Definition.h"/>
         <source-file src="src/ios/IATConfig.h"/>
@@ -34,7 +35,6 @@
         <source-file src="src/ios/IATViewController.m"/>
         <source-file src="src/ios/ISRDataHelper.h"/>
         <source-file src="src/ios/ISRDataHelper.m"/>
-        <source-file framework="true" src="src/ios/iflyMSC.framework"/>
     </platform>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
