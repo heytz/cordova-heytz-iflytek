@@ -19,14 +19,14 @@
             <feature name="Iflytek">
                 <param name="android-package" value="com.heytz.iflytek.Iflytek"/>
             </feature>
-            <preference name="iflytekappkey" value="$IFLYTEK_APPKEY"/>
+            <!--<preference name="iflytekappkey" value="$IFLYTEK_APPKEY"/>-->
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml">
 
         </config-file>
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
-            <meta-data android:name="IFLYTEK_APPKEY" android:value="$IFLYTEK_APPKEY"/>
-            <meta-data android:name="IFLYTEK_CHANNEL" android:value="developer-default"/>
+            <!--<meta-data android:name="IFLYTEK_APPKEY" android:value="$IFLYTEK_APPKEY"/>-->
+            <!--<meta-data android:name="IFLYTEK_CHANNEL" android:value="developer-default"/>-->
         </config-file>
         <config-file parent="/manifest" target="AndroidManifest.xml">
             <!--获取手机录音机使用权限，听写、识别、语义理解需要用到此权限 -->
