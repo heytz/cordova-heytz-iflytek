@@ -20,8 +20,8 @@ public class Iflytek extends CordovaPlugin {
 
     private static String TAG = Iflytek.class.getSimpleName();
 
-    private static String IFLYTEK_APP_ID = null;
-    private static final String IFLYTEK_APP_KEY = "iflytekappkey";
+    // appid 使用的是Charlie账号下,应用黑子智能
+    private static final String IFLYTEK_APP_ID = "5538a7f6";
     private static final String VOICE_RECOGNITION_START = "VoiceRecognitionStart";
     private static final String VOICE_RECOGNITION_STOP = "VoiceRecognitionStop";
 
@@ -35,17 +35,11 @@ public class Iflytek extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
 
-        // 获取appId
-        if (IFLYTEK_APP_ID == null) {
-            IFLYTEK_APP_ID = webView.getPreferences().getString(IFLYTEK_APP_KEY, "5538a7f6");
-        }
-
         Context context = cordova.getActivity().getApplicationContext();
 
         speechUtility = SpeechUtility.getUtility();
         if (speechUtility == null) {
             speechUtility = SpeechUtility.createUtility(context, SpeechConstant.APPID + "=" + IFLYTEK_APP_ID);
-            Log.i(TAG, "APP_ID=" + IFLYTEK_APP_ID);
         }
 
 //        FlowerCollector.setDebugMode(true);//开启调试模式
