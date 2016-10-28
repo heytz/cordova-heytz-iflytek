@@ -26,7 +26,8 @@ public class Iflytek extends CordovaPlugin {
     private static final String IFLYTEK_APP_ID = "5538a7f6";
     private static final String VOICE_RECOGNITION_START = "VoiceRecognitionStart";
     private static final String VOICE_RECOGNITION_STOP = "VoiceRecognitionStop";
-    private static final String VOICE_WAKEUP = "wakeup";
+    private static final String VOICE_WAKEUP_START = "startWakeuper";
+    private static final String VOICE_WAKEUP_STOP = "stopWakeuper";
 
     private SpeechUtility speechUtility;
 
@@ -91,7 +92,7 @@ public class Iflytek extends CordovaPlugin {
             callbackContext.success();
         }
 
-        if (action.equals(VOICE_WAKEUP)) {
+        if (action.equals(VOICE_WAKEUP_START)) {
             exists = true;
             if (voiceWakeuper == null || !voiceWakeuper.isListening()) {
 
@@ -104,6 +105,15 @@ public class Iflytek extends CordovaPlugin {
                 // 启动
                 voiceWakeuper.startListening(heytzWakeuperListener);
             }
+        }
+
+        // 停止唤醒
+        if (action.equals(VOICE_WAKEUP_STOP)) {
+            exists = true;
+            if (voiceWakeuper != null || voiceWakeuper.isListening()) {
+                voiceWakeuper.stopListening();
+            }
+            callbackContext.success();
         }
         return exists;
     }
@@ -158,7 +168,7 @@ public class Iflytek extends CordovaPlugin {
         // 设置唤醒模式
         voiceWakeuper.setParameter(SpeechConstant.IVW_SST, "wakeup");
         // 设置持续进行唤醒
-        voiceWakeuper.setParameter(SpeechConstant.KEEP_ALIVE, "1");
+        //voiceWakeuper.setParameter(SpeechConstant.KEEP_ALIVE, "1");
         // 设置闭环优化网络模式
 //        wakeuper.setParameter(SpeechConstant.IVW_NET_MODE, ivwNetMode);
         // 设置唤醒资源路径

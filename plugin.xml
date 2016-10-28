@@ -81,7 +81,8 @@
         <!--代码-->
         <source-file src="src/android/Iflytek.java" target-dir="src/com/heytz/iflytek"/>
         <source-file src="src/android/util/JsonParser.java" target-dir="src/com/heytz/iflytek/util"/>
-        <source-file src="src/android/listener/HeytzListener.java" target-dir="src/com/heytz/iflytek"/>
+        <source-file src="src/android/listener/HeytzListener.java"
+                     target-dir="src/com/heytz/iflytek/listener"/>
         <source-file src="src/android/listener/HeytzRecognizerListener.java"
                      target-dir="src/com/heytz/iflytek/listener"/>
         <source-file src="src/android/listener/HeytzWakeuperListener.java"
