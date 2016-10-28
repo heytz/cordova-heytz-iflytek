@@ -24,6 +24,7 @@ public class Iflytek extends CordovaPlugin {
     private static final String IFLYTEK_APP_ID = "5538a7f6";
     private static final String VOICE_RECOGNITION_START = "VoiceRecognitionStart";
     private static final String VOICE_RECOGNITION_STOP = "VoiceRecognitionStop";
+    private static final String VOICE_WAKE_UP = "wakeup";
 
     private SpeechUtility speechUtility;
 
@@ -82,6 +83,11 @@ public class Iflytek extends CordovaPlugin {
             }
             Log.i(TAG, "停止成功");
             callbackContext.success();
+        }
+
+        if (VOICE_WAKE_UP.equals(action)) {
+            exists = true;
+            callbackContext.success("success");
         }
         return exists;
     }
