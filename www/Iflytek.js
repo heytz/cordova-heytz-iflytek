@@ -8,12 +8,12 @@ exports.VoiceRecognitionStop = function (arg0, success, error) {
     exec(success, error, "Iflytek", "VoiceRecognitionStop", [arg0]);
 };
 
-// 唤醒
-exports.wakeup = function (success, error, params) {
+// 开始唤醒
+exports.startWakeuper = function (success, error, params) {
     exec(success, error, "Iflytek", "startWakeuper", [params]);
 };
 
-// 唤醒
-exports.wakeup = function (success, error, params) {
+// 停止唤醒
+exports.stopWakeuper = function (success, error, params) {
     exec(success, error, "Iflytek", "stopWakeuper", [params]);
 };

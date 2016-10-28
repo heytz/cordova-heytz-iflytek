@@ -110,7 +110,7 @@ public class Iflytek extends CordovaPlugin {
         // 停止唤醒
         if (action.equals(VOICE_WAKEUP_STOP)) {
             exists = true;
-            if (voiceWakeuper != null || voiceWakeuper.isListening()) {
+            if (voiceWakeuper != null && voiceWakeuper.isListening()) {
                 voiceWakeuper.stopListening();
             }
             callbackContext.success();
