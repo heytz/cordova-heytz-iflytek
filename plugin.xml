@@ -104,7 +104,7 @@
         <source-file src="libs/android/iflytek/voice_full.png" target-dir="assets/iflytek"/>
         <source-file src="libs/android/iflytek/waiting.png" target-dir="assets/iflytek"/>
         <source-file src="libs/android/iflytek/warning.png" target-dir="assets/iflytek"/>
-        <source-file src="libs/android/ivw/5538a7f6.jet" target-dir="assets/ivw/5538a7f6.jet"/>
+        <source-file src="libs/android/ivw/5538a7f6.jet" target-dir="assets/ivw"/>
 
 
     </platform>
