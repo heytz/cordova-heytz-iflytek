@@ -19,7 +19,7 @@ import com.heytz.iflytek.util.JsonParser;
 /**
  * 扩展识别监听器
  */
-public class HeytzRecognizerListener extends HeytListener implements RecognizerListener {
+public class HeytzRecognizerListener extends HeytzListener implements RecognizerListener {
 
     private static String TAG = HeytzRecognizerListener.class.getSimpleName();
 

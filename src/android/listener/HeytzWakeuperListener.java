@@ -16,7 +16,7 @@ import com.iflytek.cloud.SpeechEvent;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class HeytzWakeuperListener extends HeytListener implements WakeuperListener {
+public class HeytzWakeuperListener extends HeytzListener implements WakeuperListener {
     private static final String TAG = HeytzWakeuperListener.class.getSimpleName();
 
     @Override

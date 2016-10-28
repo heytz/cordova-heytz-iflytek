@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
 /**
  * Created by Alben on 16/10/28.
  */
-public class HeytListener {
+public class HeytzListener {
 
     // 听写后的回调
     protected CallbackContext callback = null;
