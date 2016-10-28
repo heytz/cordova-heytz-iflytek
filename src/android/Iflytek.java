@@ -1,9 +1,11 @@
 package com.heytz.iflytek;
 
 import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
+import com.heytz.iflytek.listener.HeytzRecognizerListener;
+import com.heytz.iflytek.listener.HeytzWakeuperListener;
 import com.iflytek.cloud.*;
+import com.iflytek.cloud.util.ResourceUtil;
 import com.iflytek.sunflower.FlowerCollector;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
@@ -24,13 +26,19 @@ public class Iflytek extends CordovaPlugin {
     private static final String IFLYTEK_APP_ID = "5538a7f6";
     private static final String VOICE_RECOGNITION_START = "VoiceRecognitionStart";
     private static final String VOICE_RECOGNITION_STOP = "VoiceRecognitionStop";
-    private static final String VOICE_WAKE_UP = "wakeup";
+    private static final String VOICE_WAKEUP = "wakeup";
 
     private SpeechUtility speechUtility;
 
-    private SpeechRecognizer speechRecognizer;
 
+    // 语音听写
+    private SpeechRecognizer speechRecognizer;
     private HeytzRecognizerListener heytzRecognizerListener;
+
+    // 唤醒
+    private VoiceWakeuper voiceWakeuper;
+    private HeytzWakeuperListener heytzWakeuperListener;
+
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -47,11 +55,7 @@ public class Iflytek extends CordovaPlugin {
         FlowerCollector.setAutoLocation(true);//开启自动获取位置信息
         FlowerCollector.setCaptureUncaughtException(true);//开启自动捕获异常信息
 
-        // 1.创建SpeechRecognizer对象
-        speechRecognizer = SpeechRecognizer.createRecognizer(context, null);
 
-        // 2.创建监听对象
-        heytzRecognizerListener = new HeytzRecognizerListener();
     }
 
     @Override
@@ -61,11 +65,13 @@ public class Iflytek extends CordovaPlugin {
         if (action.equals(VOICE_RECOGNITION_START)) {
             exists = true;
 
+            // 设置参数
+            setParameters();
+
+
             // 设置事件中的回调事件
             heytzRecognizerListener.setCallback(callbackContext);
 
-            // 2.设置参数
-            setParameters();
 
             // 开始
             int ret = speechRecognizer.startListening(heytzRecognizerListener);
@@ -85,14 +91,36 @@ public class Iflytek extends CordovaPlugin {
             callbackContext.success();
         }
 
-        if (VOICE_WAKE_UP.equals(action)) {
+        if (action.equals(VOICE_WAKEUP)) {
             exists = true;
-            callbackContext.success("success");
+            if (voiceWakeuper == null || !voiceWakeuper.isListening()) {
+
+                // 设置参数
+                setWakeupParameters();
+
+                // 设置回调事件
+                heytzWakeuperListener.setCallback(callbackContext);
+
+                // 启动
+                voiceWakeuper.startListening(heytzWakeuperListener);
+            }
         }
         return exists;
     }
 
     private void setParameters() {
+
+        // 听写
+        // 1.创建SpeechRecognizer对象
+        speechRecognizer = SpeechRecognizer.getRecognizer();
+        if (speechRecognizer == null) {
+            speechRecognizer = SpeechRecognizer.createRecognizer(cordova.getActivity().getApplicationContext(), null);
+        }
+
+
+        // 2.创建监听对象
+        heytzRecognizerListener = new HeytzRecognizerListener();
+
         // 清空参数
         speechRecognizer.setParameter(SpeechConstant.PARAMS, null);
 
@@ -111,6 +139,34 @@ public class Iflytek extends CordovaPlugin {
 
     }
 
+
+    // 唤醒
+    private void setWakeupParameters() {
+        voiceWakeuper = VoiceWakeuper.getWakeuper();
+        if (voiceWakeuper == null) {
+            //1.创建唤醒对象
+            voiceWakeuper = VoiceWakeuper.createWakeuper(cordova.getActivity().getApplicationContext(), null);
+        }
+
+        heytzWakeuperListener = new HeytzWakeuperListener();
+
+
+        // 清空参数
+        voiceWakeuper.setParameter(SpeechConstant.PARAMS, null);
+        // 唤醒门限值，根据资源携带的唤醒词个数按照“id:门限;id:门限”的格式传入
+        voiceWakeuper.setParameter(SpeechConstant.IVW_THRESHOLD, "0:10,1:10");
+        // 设置唤醒模式
+        voiceWakeuper.setParameter(SpeechConstant.IVW_SST, "wakeup");
+        // 设置持续进行唤醒
+        voiceWakeuper.setParameter(SpeechConstant.KEEP_ALIVE, "1");
+        // 设置闭环优化网络模式
+//        wakeuper.setParameter(SpeechConstant.IVW_NET_MODE, ivwNetMode);
+        // 设置唤醒资源路径
+        String resource = getResource();
+        Log.i(TAG, "resource:" + resource);
+        voiceWakeuper.setParameter(SpeechConstant.IVW_RES_PATH, resource);
+    }
+
     @Override
     public void onDestroy() {
         Log.i(TAG, "onDestroy");
@@ -121,6 +177,12 @@ public class Iflytek extends CordovaPlugin {
         speechRecognizer.destroy();
         SpeechUtility.getUtility().destroy();
         super.onDestroy();
+    }
+
+
+    private String getResource() {
+        return ResourceUtil.generateResourcePath(cordova.getActivity().getApplicationContext(),
+                ResourceUtil.RESOURCE_TYPE.assets, "ivw/" + IFLYTEK_APP_ID + ".jet");
     }
 
 }

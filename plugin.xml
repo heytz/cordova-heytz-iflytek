@@ -79,9 +79,13 @@
             <uses-permission android:name="android.permission.CAMERA"/>
         </config-file>
         <!--代码-->
-        <source-file src="src/android/JsonParser.java" target-dir="src/com/heytz/iflytek/util"/>
         <source-file src="src/android/Iflytek.java" target-dir="src/com/heytz/iflytek"/>
-        <source-file src="src/android/HeytzRecognizerListener.java" target-dir="src/com/heytz/iflytek"/>
+        <source-file src="src/android/util/JsonParser.java" target-dir="src/com/heytz/iflytek/util"/>
+        <source-file src="src/android/listener/HeytzListener.java" target-dir="src/com/heytz/iflytek"/>
+        <source-file src="src/android/listener/HeytzRecognizerListener.java"
+                     target-dir="src/com/heytz/iflytek/listener"/>
+        <source-file src="src/android/listener/HeytzWakeuperListener.java"
+                     target-dir="src/com/heytz/iflytek/listener"/>
         <!--lib 引用-->
         <source-file src="libs/android/arm64-v8a/libmsc.so" target-dir="libs/arm64-v8a"/>
         <source-file src="libs/android/armeabi/libmsc.so" target-dir="libs/armeabi"/>
@@ -100,6 +104,7 @@
         <source-file src="libs/android/iflytek/voice_full.png" target-dir="assets/iflytek"/>
         <source-file src="libs/android/iflytek/waiting.png" target-dir="assets/iflytek"/>
         <source-file src="libs/android/iflytek/warning.png" target-dir="assets/iflytek"/>
+        <source-file src="libs/android/ivw/5538a7f6.jet" target-dir="assets/ivw/5538a7f6.jet"/>
 
 
     </platform>
