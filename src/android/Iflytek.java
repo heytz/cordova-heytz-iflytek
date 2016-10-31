@@ -181,11 +181,13 @@ public class Iflytek extends CordovaPlugin {
     public void onDestroy() {
         Log.i(TAG, "onDestroy");
         // 退出时释放连接
-        if (speechRecognizer.isListening()) {
-            speechRecognizer.cancel();
+        if (speechRecognizer != null) {
+            if (speechRecognizer.isListening()) {
+                speechRecognizer.cancel();
+            }
+            speechRecognizer.destroy();
         }
-        speechRecognizer.destroy();
-        SpeechUtility.getUtility().destroy();
+//      SpeechUtility.getUtility().destroy();
         super.onDestroy();
     }
 
