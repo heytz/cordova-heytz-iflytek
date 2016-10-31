@@ -147,6 +147,13 @@ public class Iflytek extends CordovaPlugin {
         // 静音抑制
         // speechRecognizer.setParameter(SpeechConstant.VAD_ENABLE, null);
 
+        //开始录入音频后，音频前面部分最长静音时长。
+        //speechRecognizer.setParameter(SpeechConstant.VAD_BOS, 1000);
+
+        //音频后面部分最长静音时长
+        speechRecognizer.setParameter(SpeechConstant.VAD_EOS, 1000);
+
+
     }
 
 
