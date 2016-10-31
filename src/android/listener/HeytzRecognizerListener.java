@@ -2,16 +2,14 @@
  * Created by chendongdong on 2016/9/26.
  */
 
-package com.heytz.iflytek;
+package com.heytz.iflytek.listener;
 
 import android.os.Bundle;
 import android.util.Log;
 import com.iflytek.cloud.*;
 import org.apache.cordova.CallbackContext;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -21,15 +19,9 @@ import com.heytz.iflytek.util.JsonParser;
 /**
  * 扩展识别监听器
  */
-public class HeytzRecognizerListener implements RecognizerListener {
+public class HeytzRecognizerListener extends HeytzListener implements RecognizerListener {
 
     private static String TAG = HeytzRecognizerListener.class.getSimpleName();
-
-    // 听写后的回调
-    private CallbackContext callback = null;
-
-    // 听写结果
-    private HashMap<String, String> results = new LinkedHashMap<String, String>();
 
     @Override
     public void onVolumeChanged(int i, byte[] bytes) {
@@ -87,15 +79,5 @@ public class HeytzRecognizerListener implements RecognizerListener {
         Log.i(TAG, "事件回调 消息类型:" + i + ",网络连接值:" + i1 + "," + i2 + ",消息内容:" + bundle);
     }
 
-    public CallbackContext getCallback() {
-        return this.callback;
-    }
 
-    public void setCallback(CallbackContext callback) {
-        this.callback = callback;
-    }
-
-    private boolean hasCallbackContext() {
-        return callback != null;
-    }
 }
