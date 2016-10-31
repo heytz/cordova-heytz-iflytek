@@ -151,7 +151,7 @@ public class Iflytek extends CordovaPlugin {
         //speechRecognizer.setParameter(SpeechConstant.VAD_BOS, 1000);
 
         //音频后面部分最长静音时长
-        speechRecognizer.setParameter(SpeechConstant.VAD_EOS, 1000);
+        speechRecognizer.setParameter(SpeechConstant.VAD_EOS, "1000");
 
 
     }
